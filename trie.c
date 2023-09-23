@@ -2,7 +2,7 @@
 // https://www.dailypaws.com/dogs-puppies/dog-names/common-dog-names
 
 #include <cs50.h>
-#include <ctype.h>
+#include <ctype.h> 
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -131,16 +131,19 @@ bool check(char* word)
 // Unload trie from memory
 bool unload(void)
 {
-
+    
     // The recursive function handles all of the freeing
-    unloader(root);
-
+    unloader(root);    
     return true;
 }
 
 void unloader(node* current)
 {
 
+    if (current == NULL)
+    {
+        return;
+    }
     // Iterate over all the children to see if they point to anything and go
     // there if they do point
     for (int i = 0; i < SIZE_OF_ALPHABET; i++)
@@ -149,6 +152,8 @@ void unloader(node* current)
         {
             unloader(current->children[i]);
         }
+
+        
     }
 
     // After we check all the children point to null we can get rid of the node
